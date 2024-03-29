@@ -164,7 +164,7 @@ const EmployeeComponent = () => {
             return <h2 className=''>Employee Form</h2>
         }
     }
-
+    
   return (
     
     <div className="container mt-3">
@@ -194,7 +194,7 @@ const EmployeeComponent = () => {
 
                 <div className="form-group col-md">
                     <label htmlFor="dob" className="form-label">Date of Birth</label>
-                        <input type="date"  value={dateOfBirth}
+                        <input type="date" value={dateOfBirth}
                             className={`form-control ${errors.dateOfBirth ? 'is-invalid' : ''}`}
                             onChange={(e) => setDateofBirth(e.target.value)}/>
                             {errors.dateOfBirth && <div className="invalid-feedback"> {errors.dateOfBirth} </div>}
@@ -270,9 +270,7 @@ const EmployeeComponent = () => {
             <div className="text-center">
                 <button type="button" className="submit" onClick={saveOrUpdateEmployee}>Submit</button>
             </div>
-            <div className="text-center">
-                <button type="button" className="submit" onClick={saveOrUpdateEmployee}>Submit</button>
-            </div>
+
         </form>
     </div>
   )

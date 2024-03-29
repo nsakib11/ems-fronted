@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { deleteEmployee, listEmployees } from '../services/EmployeeService';
 import { useNavigate } from 'react-router-dom';
+import * as XLSX from 'xlsx'; // Import xlsx library for Excel export
 
 
 const ListEmployeeComponent = () => {
@@ -85,7 +86,13 @@ const ListEmployeeComponent = () => {
     });
     };
 
-    
+     // Function to export employees to Excel
+     const exportToExcel = () => {
+        const worksheet = XLSX.utils.json_to_sheet(employees);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Employees');
+        XLSX.writeFile(workbook, 'employees.xlsx');
+    };
     
 
     return (
@@ -127,7 +134,7 @@ const ListEmployeeComponent = () => {
                             <div>
                                 <ul className="navbar-nav ml-auto">
                                     <li className="nav-item">
-                                        <button className=" excel" type="button">Export to Excel</button>
+                                        <button className=" excel" type="button" onClick={exportToExcel}>Export to Excel</button>
                                     </li>
                                     <li className="nav-item">
                                     <button className="  new-employee-btn" type="button" onClick={addNewEmployee} > + New Employee</button>
@@ -186,7 +193,7 @@ const ListEmployeeComponent = () => {
                                     </td>
                                     <td>{employee.firstName} {employee.lastName}</td>
                                     <td>{employee.mobile}</td>
-                                    <td>{employee.dateOfBirth}</td>
+                                    <td>{new Date(employee.dateOfBirth).toLocaleDateString('en-US')}</td>
                                     <td>{employee.email}</td>
                                     <td>{employee.city}</td>
                                     <td>
