@@ -270,6 +270,9 @@ const EmployeeComponent = () => {
             <div className="text-center">
                 <button type="button" className="submit" onClick={saveOrUpdateEmployee}>Submit</button>
             </div>
+            <div className="text-center">
+                <button type="button" className="submit" onClick={saveOrUpdateEmployee}>Submit</button>
+            </div>
         </form>
     </div>
   )
